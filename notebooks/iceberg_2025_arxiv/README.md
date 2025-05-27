@@ -5,7 +5,7 @@ Wang et al. "Neural Spectral Prediction for Structure Elucidation with Tandem Ma
 
 -------------------------
 
-* We recommend start working with ``demo_pubchem_elucidation.ipynb`` for your project. This notebook contains the 
+* We recommend start working with ``iceberg_demo_pubchem_elucidation.ipynb`` for your project. This notebook contains the 
 example reported in the paper on the identification of GABA-Arg, with step-by-step instructions.
 * The other notebooks are meant to help reproduce the figures:
   * ``iceberg_fig_qualitative.ipynb`` plots the qualitative study of bond-breaking

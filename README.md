@@ -93,6 +93,11 @@ This can be done with the following script, specifying an appropriate dataset:
 
 ```
 
+To get the PubChem-SMILES mapping that's required for contrastive finetuning, 
+please download [pubchem_formulae_inchikey.hdf5](https://zenodo.org/records/15529765/files/pubchem_formulae_inchikey.hdf5)
+and place it at ``data/pubchem/pubchem_formulae_inchikey.hdf5`` 
+You don't need this if you decide to skip contrastive finetuning.
+
 
 ### Retrieval
 
