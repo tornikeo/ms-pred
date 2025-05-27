@@ -66,9 +66,6 @@ Once the dataset is processed, move the files to ``ms-pred/data/spec_datasets/ni
 ```
 
 
-As part of revisions for our work introducing ICEBERG, we also evaluated our pretrained models on the CASMI22 positive mode spectra test set. We extracted CASMI22 [previously](https://github.com/samgoldman97/mist-cf) and show how to post-process and download this data in the notebook `notebooks/iceberg_casmi22.ipynb`.
-
-
 ### SCARF Processing
 
 Data should then be assigned to subformulae files using
