@@ -24,11 +24,12 @@ Contributors: Sam Goldman, Runzhong Wang, Rui-Xi Wang, Mrunali Manjrekar, John B
 
 
 1. [Install](#setup)  
-2. [Data](#data)  
-3. [Experiments](#experiments)    
-4. [Analysis](#analysis)    
-5. [Structural elucidation](#elucidation)    
-6. [Citation](#citation)    
+2. [Demo](#demo)
+3. [Data](#data)
+4. [Experiments](#experiments)    
+5. [Analysis](#analysis)    
+6. [Structural elucidation](#elucidation)    
+7. [Citation](#citation)    
 
 
 ## Install & setup <a name="setup"></a>
@@ -41,7 +42,24 @@ mamba activate ms-gen
 pip install -r requirements.txt
 python3 setup.py develop
 ```
+Installation will take ~5 minutes.
+
 Note: if you are not using GPU, please comment the CUDA-based packages in ``envorinment.yaml``.
+
+## Demo <a name="demo"></a>
+A demo of how to use mass spectrum predictors (ICEBERG as an example) for structural elucidation campaigns can be found at [``notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb``](notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb).
+
+Please go through the following prerequisites to run the demo:
+* Clone the repository ``git clone https://github.com/coleygroup/ms-pred.git``.
+* Start a jupyter notebook server (by ``jupyter notebook``), and navigate to ``notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb`` in the web UI.
+* Get pretrained ICEBERG model weights.
+    * You can either train the model by yourself (following instructions below);
+    * Or if you have an NSIT'20 license (or newer), you can [email the maintainer with a proof of license](mailto:runzhong@mit.edu?subject=Inquiry%20of%20pretrianed%20ICEBERG%20on%20NIST20&body=My%20organization%20has%20a%20NIST'20%20(or%20newer)%20license%20and%20I%20would%20like%20to%20receive%20pretrained%20weights%20of%20ICEBERG%20on%20NIST'20.%20Please%20find%20the%20proof%20of%20purchase%20as%20attached.)
+* Update [``the configuration file``](configs/iceberg/iceberg_elucidation.yaml) based your local setting. Change ``python_path`` to your Python excutiable, and update ``gen_ckpt`` and ``inten_ckpt`` to the path of your pretrained models.
+    * When you have a GPU with smaller RAM, set smaller numbers for ``batch_size`` and ``num_workers`` to fit the model into GPU RAM (``batch_size: 8``, ``num_workers: 6`` tested on NVIDIA RTX 4070M 8GB; ``batch_size: 8``, ``num_workers: 12`` tested on NVIDIA RTX A5000 24GB).
+    * CPU-only inference is also feasible if you set ``cuda_devices: None``.
+ 
+Running the demo takes <2 minutes with a regular desktop GPU.
 
 ## Data <a name="data"></a>
 
@@ -124,7 +142,7 @@ python data_scripts/pubchem/04_make_retrieval_lists.py
 ICEBERG is our recommended model with a 40% top-1 retrieval accuracy with [M+H]+, benchmarked on the NIST'20 dataset. 
 ICEBERG is trained in two parts: a learned fragment generator and an intensity predictor. The pipeline for training and evaluating this model can be accessed in `run_scripts/iceberg/`. 
 There is an all-in-one script ``run_scripts/iceberg/run_all.sh`` that trains the up-to-date version of ICEBERG on NIST'20 dataset described in Wang et al. (2025). 
-The archived version released with [Goldman et al. (2024)](http://arxiv.org/abs/2304.13136) is at the [``iceberg_analychem_2024`` branch](https://github.com/coleygroup/ms-pred/tree/iceberg_analychem_2024).
+The archived version released with [Goldman et al. (2024)](http://.org/abs/2304.13136) is at the [``iceberg_analychem_2024`` branch](https://github.com/coleygroup/ms-pred/tree/iceberg_analychem_2024).
 The internal pipeline used to conduct experiments can be followed below:
 
 1. *Train dag model*: `run_scripts/iceberg/01_run_dag_gen_train.sh`   
@@ -154,7 +172,7 @@ training, and predict calls can be  made using the following scripts respectivel
 2. `python src/ms_pred/dag_pred/train_inten.py`
 3. `python src/ms_pred/dag_pred/predict_smis.py`
 
-An example of how to use ICEBERG for structural elucidation campaigns can be found at ``notebooks/iceberg_2025_arxiv/iceberg_demo_pubchem_elucidation.ipynb``.
+An example of how to use ICEBERG for structural elucidation campaigns can be found at ``notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb``.
 
 
 ### SCARF
@@ -322,7 +340,7 @@ Additional analyses used for figure generation were conducted in `notebooks/`.
 
 ## Structural elucidation <a name="elucidation"></a>
 
-Forward models could be applied for structural elucidation tasks with a set of candidate structures. An example workflow by taking all PubChem structures with the same chemical formula is shown in [``notebooks/iceberg_2025_arxiv/iceberg_demo_pubchem_elucidation.ipynb``](notebooks/iceberg_2025_arxiv/iceberg_demo_pubchem_elucidation.ipynb). In this example, ICEBERG predicts simulated spectra for all candidates, then all candidates are ranked based on their entropy similarities to the experimental spectrum.
+Forward models could be applied for structural elucidation tasks with a set of candidate structures. An example workflow by taking all PubChem structures with the same chemical formula is shown in [``notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb``](notebooks/iceberg_2025_biorxiv/iceberg_demo_pubchem_elucidation.ipynb). In this example, ICEBERG predicts simulated spectra for all candidates, then all candidates are ranked based on their entropy similarities to the experimental spectrum.
 
 ## Citation <a name="citation"></a>
 
