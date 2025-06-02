@@ -2,7 +2,7 @@
 
 This repository contains implementations for the following spectrum simulator models predicting molecular tandem mass spectra from molecules: 
 
-- 🧊 ICEBERG 🧊️: [Inferring CID by Estimating Breakage Events and Reconstructing their Graphs](http://arxiv.org/abs/2304.13136) (now available to run through [GNPS2](https://gnps2.org/workflowinput?workflowname=3DMolMS_smiles_to_spectra))
+- 🧊 ICEBERG 🧊️: [Inferring CID by Estimating Breakage Events and Reconstructing their Graphs](http://arxiv.org/abs/2304.13136) and [Neural Spectral Prediction for Structure Elucidation with Tandem Mass Spectrometry](https://www.biorxiv.org/content/10.1101/2025.05.28.656653v1)
 - 🏃‍ MARASON 🏃‍: [Neural Graph Matching Improves Retrieval Augmented Generation in Molecular Machine Learning](https://arxiv.org/html/2502.17874) (Code merging WIP)
 - 🧣 SCARF 🧣: [Subformula Classification for Autoregressively Reconstructing Fragmentations](https://arxiv.org/abs/2303.06470)
 
@@ -369,6 +369,16 @@ We ask any user of this repository to cite the following works based upon the po
   pages={3419--3428},
   year={2024},
   publisher={ACS Publications}
+}
+
+@article{Wang2025.05.28.656653,
+	author={Wang, Runzhong and Manjrekar, Mrunali and Mahjour, Babak and Avila-Pacheco, Julian and Provenzano, Joules and Reynolds, Erin and Lederbauer, Magdalena and Mashin, Eivgeni and Goldman, Samuel L. and Wang, Mingxun and Weng, Jing-Ke and Plata, Desir{\'e}e L. and Clish, Clary B. and Coley, Connor W.},
+	title={Neural Spectral Prediction for Structure Elucidation with Tandem Mass Spectrometry},
+	elocation-id = {2025.05.28.656653},
+	year={2025},
+	URL={https://www.biorxiv.org/content/early/2025/06/01/2025.05.28.656653},
+	eprint={https://www.biorxiv.org/content/early/2025/06/01/2025.05.28.656653.full.pdf},
+	journal={bioRxiv}
 }
 ```
 
