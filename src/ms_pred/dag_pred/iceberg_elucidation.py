@@ -55,16 +55,20 @@ def candidates_from_pubchem(
     Returns: list of SMILES
 
     """
-    if pubchem_form_map[-5:] == '.hdf5':  # hdf5 file
-        form_to_smi_mapping = common.HDF5Dataset(pubchem_form_map)
-        def read_fn(obj, form):
-            return obj.read_str(form)
-    elif pubchem_form_map[-2:] == '.p':  # pickle file
-        form_to_smi_mapping = pickle.load(open(pubchem_form_map, 'rb'))
-        def read_fn(obj, form):
-            return obj[form]
+    if Path(pubchem_form_map).exists():  # cached formula-SMILES mapping
+        if pubchem_form_map[-5:] == '.hdf5':  # hdf5 file
+            form_to_smi_mapping = common.HDF5Dataset(pubchem_form_map)
+            def read_fn(obj, form):
+                return obj.read_str(form)
+        elif pubchem_form_map[-2:] == '.p':  # pickle file
+            form_to_smi_mapping = pickle.load(open(pubchem_form_map, 'rb'))
+            def read_fn(obj, form):
+                return obj[form]
+        else:
+            raise ValueError('Unknown pubchem_form_map type. Supported: HDF5 (.hdf5) or Pickle (.p)')
     else:
-        raise ValueError('Unknown pubchem_form_map type. Supported: HDF5 (.hdf5) or Pickle (.p)')
+        print(f'{pubchem_form_map} does not exist. Retrieving with PubChem API')
+        form_to_smi_mapping = []
 
     if formula in form_to_smi_mapping:
         smiles_inchikey = json.loads(read_fn(form_to_smi_mapping, formula))
