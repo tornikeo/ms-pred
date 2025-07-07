@@ -76,7 +76,15 @@ def candidates_from_pubchem(
         def smiles_from_pubchem(form):
             try:
                 compounds = pcp.get_compounds(form, namespace='formula')
-                return [cmpd.isomeric_smiles for cmpd in compounds]
+                return_smis = []
+                for cmpd in compounds:
+                    smiles_records = [i for i in cmpd.to_dict().get("record").get("props") if i["urn"]["label"] == "SMILES"]
+                    smi = None
+                    if len(smiles_records) > 0:
+                        smi = smiles_records[0]['value']['sval']
+                    return_smis.append(smi)
+                return return_smis
+                # Was working: return [cmpd.isomeric_smiles for cmpd in compounds]
             except pcp.BadRequestError:
                 return []
         try:
