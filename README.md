@@ -37,8 +37,8 @@ Contributors: Sam Goldman, Runzhong Wang, Rui-Xi Wang, Mrunali Manjrekar, John B
 Install and set up the conda environment using [mamba](https://mamba.readthedocs.io/en/latest/):
 
 ```
-mamba env create -f environment.yml
-mamba activate ms-gen
+micromamba env create -f environment.yml
+micromamba activate ms-gen
 pip install -r requirements.txt
 python3 setup.py develop
 ```
