@@ -527,6 +527,7 @@ def process_spec_file(meta, tuples, precision=4, merge_specs=True, exclude_paren
     parent_mass = float(parent_mass)
 
     # First norm spectra
+    # List[Tuple[str, np.ndarray]], Ce: str, x: np.ndarray
     fused_tuples = {ce: x for ce, x in tuples if x.size > 0}
 
     if len(fused_tuples) == 0:

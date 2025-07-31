@@ -168,4 +168,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-MassSpecGym.csv
+data/
+*.csv
+*.msp
+*.mgf
